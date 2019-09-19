@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ssm-shiro-controller:war">
+    <output-path>$PROJECT_DIR$/ssm-shiro-controller/target</output-path>
+    <root id="archive" name="ssm-shiro-controller.war">
+      <element id="artifact" artifact-name="ssm-shiro-controller:war exploded" />
+    </root>
+  </artifact>
+</component>

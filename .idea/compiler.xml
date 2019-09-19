@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="shir-wzq-ssm" />
+        <module name="ssm-shiro-controller" />
+        <module name="ssm-shiro-dao" />
+        <module name="ssm-shiro-model" />
+        <module name="ssm-shiro-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shir-wzq-ssm" target="1.7" />
+      <module name="ssm-shiro-controller" target="1.7" />
+      <module name="ssm-shiro-dao" target="1.7" />
+      <module name="ssm-shiro-model" target="1.5" />
+      <module name="ssm-shiro-service" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
