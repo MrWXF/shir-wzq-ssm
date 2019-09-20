@@ -3,7 +3,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
-    <%@include file="headfile.jsp"%>
+    <%@include file="../headel/headfile.jsp"%>
 </head>
 <body>
  <header class="main-header">

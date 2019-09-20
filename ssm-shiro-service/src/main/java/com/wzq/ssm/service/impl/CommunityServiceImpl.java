@@ -1,7 +1,5 @@
 package com.wzq.ssm.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.wzq.ssm.dao.CommunityInfoDao;
 import com.wzq.ssm.model.CommunityInfo;
 import com.wzq.ssm.service.CommunityService;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -66,5 +65,11 @@ public class CommunityServiceImpl implements CommunityService<CommunityInfo> {
     public List<CommunityInfo> likeFind(String str) {
         List<CommunityInfo> communityInfos = communityInfoDao.likeFind(str);
         return communityInfos;
+    }
+
+    @Override
+    public Map<Object, Object> groupFind(String name) {
+        Map<Object, Object> maps = communityInfoDao.groupFind(name);
+        return maps;
     }
 }

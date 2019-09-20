@@ -88,7 +88,7 @@
                 <ul class="treeview-menu">
 
                     <li id="form-general">
-                        <a href="${pageContext.request.contextPath}/pages/merge/comm_select.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/lj/comm_select.jsp">
                             <i class="fa fa-circle-o"></i> 商品信息
                         </a>
                     </li>
@@ -114,7 +114,7 @@
                 <ul class="treeview-menu">
 
                     <li id="travellog-manage">
-                        <a href="${pageContext.request.contextPath}/pages/merge/staff_select.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/lj/staff_select.jsp">
                             <i class="fa fa-circle-o"></i> 员工列表
                         </a>
                     </li>

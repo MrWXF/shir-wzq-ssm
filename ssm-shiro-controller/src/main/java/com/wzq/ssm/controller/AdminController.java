@@ -35,7 +35,7 @@ public class AdminController {
         System.out.println(admins);
 
         model.addAttribute("admins",admins);
-        return "/page/list";
+        return "/page/list-test";
     }
 
     /**
@@ -47,7 +47,7 @@ public class AdminController {
         Admin admin1 = new Admin("wzq","222",2);
         int saveconnt = adminService.sava(admin1);
         System.out.println(saveconnt);
-        return "list";
+        return "page/list-test";
     }
 
     /**

@@ -181,4 +181,19 @@ public class Staff {
         }
         this.state = state;
     }
+
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", phone='" + phone + '\'' +
+                ", adress='" + adress + '\'' +
+                ", email='" + email + '\'' +
+                ", state=" + state +
+                ", stateStr='" + stateStr + '\'' +
+                '}';
+    }
 }

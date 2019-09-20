@@ -18,6 +18,11 @@ public class Role {
     private Integer aRole;
 
     /**
+     * 关联的模型
+     */
+    private Admin admin;
+
+    /**
      * @return id
      */
     public Integer getId() {

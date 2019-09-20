@@ -7,12 +7,13 @@ import com.wzq.ssm.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品控制器
@@ -49,11 +50,12 @@ public class CommunityController {
      * @return
      */
     @RequestMapping("/addComm")
-    public String addComm(CommunityInfo comm){
+    public String addComm(@RequestParam("page")  String page,
+                          @RequestParam("size")String size, CommunityInfo comm){
 
         int sava = communityService.sava(comm);
         System.out.println(sava);
-        return "redirect:/comm/selectCommAll.do";
+        return "redirect:/comm/selectCommAll.do?page="+page+"&size="+size;
     }
 
     /**
@@ -81,13 +83,36 @@ public class CommunityController {
     }
 
 
+    @ResponseBody
     @RequestMapping("/findAll")
-    public void findAll(){
+    public ModelAndView findAll(){
         List<CommunityInfo> communityInfos = communityService.findAll();
 
+        ModelAndView mv = new ModelAndView();
+        ModelAndView comms = mv.addObject("comms", communityInfos);
+
+        System.out.println(comms);
+        mv.setViewName("/index");
         System.out.println(communityInfos);
+        return mv;
 
+    }
 
+    /**
+     * 利用map封装分组查询的数据
+     * name: 查询的条件
+     */
+
+    @RequestMapping("/groupFind")
+    @ResponseBody
+    public ModelAndView groupFind(){
+        ModelAndView mv = new ModelAndView();
+
+        String name = "";
+        Map<Object, Object> map = communityService.groupFind(name);
+        System.out.println(map);
+
+        return mv;
     }
 
 }

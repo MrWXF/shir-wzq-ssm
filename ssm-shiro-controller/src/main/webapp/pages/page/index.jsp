@@ -23,12 +23,8 @@
     <!-- 内容头部 -->
         <section class="content-header">
         <h1>
-            控制面板
-            <small>首页</small>
+            商品列表
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-        </ol>
         </section>
     <!-- 内容头部 /-->
         <!-- 正文区域 -->
@@ -36,9 +32,6 @@
 
             <!-- .box-body -->
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
-                </div>
 
                 <div class="box-body">
 

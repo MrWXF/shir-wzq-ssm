@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import java.util.List;
+import java.util.Map;
 
 public interface CommunityInfoDao {
 
@@ -35,6 +36,8 @@ public interface CommunityInfoDao {
 
     /**
      * 分组查询
+     * name 条件
      */
-
+    @Select("select name, COUNT(*) from tb_admin GROUP BY #{name}")
+    public Map<Object,Object> groupFind(String name);
 }

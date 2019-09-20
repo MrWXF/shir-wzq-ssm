@@ -42,4 +42,11 @@ public class StaffServiceImpl implements StaffService<Staff> {
     public int delete(Integer id) {
         return 0;
     }
+
+    @Override
+    public int addStaff(Staff staff) {
+
+        int count = staffDao.addStaff(staff);
+        return count;
+    }
 }

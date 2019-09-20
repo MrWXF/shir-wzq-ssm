@@ -23,21 +23,16 @@
     <!-- 内容头部 -->
         <section class="content-header">
         <h1>
-            超市管理系统
-            <small>首页</small>
+            商品添加
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-        </ol>
         </section>
 
         <section class="content">
 
             <!--订单信息-->
-            <form action="${pageContext.request.contextPath}/comm/addComm.do" method="get">
+            <form action="${pageContext.request.contextPath}/comm/addComm.do?page=1&size=4" method="get">
             <div class="panel panel-default">
 
-                <div class="panel-heading">增加商品</div>
                 <div class="row data-type">
 
                     <div class="col-md-2 title">商品名称</div>
