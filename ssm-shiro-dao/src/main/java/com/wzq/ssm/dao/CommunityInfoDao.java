@@ -2,8 +2,9 @@ package com.wzq.ssm.dao;
 
 import com.wzq.ssm.model.CommunityInfo;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 
 public interface CommunityInfoDao {
@@ -18,4 +19,22 @@ public interface CommunityInfoDao {
     @Insert("insert into community_info(tradename,cate,supplierid ,purchtime ,price ) values (" +
             "#{tradename},#{cate},#{supplierid},#{purchtime},#{price})")
     public int sava(CommunityInfo communityInfo);
+
+
+    /**
+     * 模糊查询数据
+     * results注解 id 主键， property 实体对应的名称， column数据库对应的名称， javaType java类型 ，jdbcType 数据库类型
+     */
+
+    @Select("select * from community_info where tradename like #{str} or cate LIKE #{str}")
+    @Results(
+            @Result( id = true,property = "id", column = "id",javaType = Integer.class)
+    )
+    List<CommunityInfo> likeFind(String str);
+
+
+    /**
+     * 分组查询
+     */
+
 }

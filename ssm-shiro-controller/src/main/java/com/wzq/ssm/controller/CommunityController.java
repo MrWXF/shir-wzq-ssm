@@ -7,8 +7,10 @@ import com.wzq.ssm.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -63,6 +65,29 @@ public class CommunityController {
 
         model.addAttribute("ajax1","ajax1");
         return "/headel/pagelift";
+    }
+
+    @RequestMapping("/likeFind")
+//    @ResponseBody
+    public String likeFind(Model model){
+        String str = "%力%";
+
+        List<CommunityInfo> communityInfos = communityService.likeFind(str);
+
+        model.addAttribute("comms",communityInfos);
+
+        System.out.println(communityInfos);
+        return "/index";
+    }
+
+
+    @RequestMapping("/findAll")
+    public void findAll(){
+        List<CommunityInfo> communityInfos = communityService.findAll();
+
+        System.out.println(communityInfos);
+
+
     }
 
 }

@@ -17,7 +17,7 @@
       <module name="shir-wzq-ssm" target="1.7" />
       <module name="ssm-shiro-controller" target="1.7" />
       <module name="ssm-shiro-dao" target="1.7" />
-      <module name="ssm-shiro-model" target="1.5" />
+      <module name="ssm-shiro-model" target="1.7" />
       <module name="ssm-shiro-service" target="1.7" />
     </bytecodeTargetLevel>
   </component>

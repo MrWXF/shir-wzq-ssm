@@ -232,6 +232,13 @@
         </dependency>
         <!--ec begin-->
 
+            <!--到日pagehelper包-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+            <!--到日pagehelper包 end-->
 
 </dependencies>
 

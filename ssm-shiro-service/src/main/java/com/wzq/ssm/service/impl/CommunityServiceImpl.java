@@ -16,7 +16,7 @@ import java.util.List;
 public class CommunityServiceImpl implements CommunityService<CommunityInfo> {
 
     @Autowired
-    CommunityInfoDao communityInfoDao;
+    private CommunityInfoDao communityInfoDao;
 
     /**
      * 查询所有商品
@@ -55,5 +55,16 @@ public class CommunityServiceImpl implements CommunityService<CommunityInfo> {
 
         List<CommunityInfo> comms = communityInfoDao.findAll();
         return comms;
+    }
+
+    /**
+     * 关键字 查询有关的数据
+     * @param str 关键字符串
+     * @return
+     */
+    @Override
+    public List<CommunityInfo> likeFind(String str) {
+        List<CommunityInfo> communityInfos = communityInfoDao.likeFind(str);
+        return communityInfos;
     }
 }
