@@ -111,7 +111,7 @@ public class AdminController {
     @RequestMapping("/logout")
     public String logout(){
 
-        return "/page/login";
+        return "redirect:/page/login";
     }
 
     /**
@@ -121,7 +121,7 @@ public class AdminController {
     public String reAdmin(){
         adminService.findAll();
         return "redirect:/admin/login.do";
-    }
+}
 
     /**
      * 注册页面
