@@ -32,4 +32,12 @@ public interface AdminDao {
 
     @Select("select * from tb_admin where name = #{name}")
     Admin login(String name);
+
+    //查询用户名和邮箱
+    @Select("select name,email from tb_admin where name = #{name} or email = #{email}")
+    Admin findNameAndEmail(Admin admin);
+
+    //添加用户
+    @Insert("insert into tb_admin(name,password,email) values (#{name},#{password},#{email})")
+    int addUser(Admin admin);
 }

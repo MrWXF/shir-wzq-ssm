@@ -13,26 +13,27 @@
         <url>http://www.example.com</url>
 
         <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <maven.compiler.source>1.7</maven.compiler.source>
+            <maven.compiler.target>1.7</maven.compiler.target>
 
 
-        <!--测试/日志-->
-        <junit.version>4.12</junit.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <log4j.version>2.11.2</log4j.version>
-        <!--数据库-->
-        <mysql.version>5.1.41</mysql.version>
-        <mybatis.version>3.4.0</mybatis.version>
-        <mybatis-spring.version>1.3.2</mybatis-spring.version>
-        <c3p0.version>0.9.5.4</c3p0.version>
-        <!--数据绑定-->
-        <lombok.version>1.18.6</lombok.version>
-        <!--Spring-->
-        <spring.version>5.0.2.RELEASE</spring.version>
-        <!--shrio-->
-        <shiro.version>1.2.1</shiro.version>
+            <!--测试/日志-->
+            <junit.version>4.12</junit.version>
+            <slf4j.version>1.7.25</slf4j.version>
+            <log4j.version>2.11.2</log4j.version>
+            <!--数据库-->
+            <mysql.version>5.1.41</mysql.version>
+            <mybatis.version>3.4.0</mybatis.version>
+            <mybatis-spring.version>1.3.2</mybatis-spring.version>
+            <c3p0.version>0.9.5.4</c3p0.version>
+            <!--数据绑定-->
+            <lombok.version>1.18.6</lombok.version>
+            <!--Spring-->
+            <spring.version>5.0.2.RELEASE</spring.version>
+            <!--shrio-->
+            <shiro.version>1.2.1</shiro.version>
+            <jcouchdb.version>1.0.1-1</jcouchdb.version>
         </properties>
 
         <dependencies>
@@ -239,6 +240,20 @@
             <version>5.1.2</version>
         </dependency>
             <!--到日pagehelper包 end-->
+
+            <!--结局NoSuchMethodError 的commons-codec版本过低的问题 begin-->
+        <dependency>
+            <groupId>com.google.code.jcouchdb</groupId>
+            <artifactId>jcouchdb</artifactId>
+            <version>${jcouchdb.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+            <!--结局NoSuchMethodError 的commons-codec版本过低的问题 end-->
 
 </dependencies>
 

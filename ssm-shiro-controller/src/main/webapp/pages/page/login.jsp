@@ -16,14 +16,12 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">登录系统</p>
-
-
-        <div class="social-auth-links text-center">
+        <div class="social-auth-links text-center ">
             <%--<a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-weixin"></i></a>--%>
-            <span class=" btn-block btn-google" ><i>${nopower}</i></span>
+            <span class=" btn-block btn-google" ><i id="nopower">${msg}</i></span>
 
         </div>
-
+        <a href="${pageContext.request.contextPath}/admin/no_power.do"></a>
         <form action="${pageContext.request.contextPath}/admin/login.do" method="get">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" name="name" placeholder="用户名">
@@ -48,7 +46,7 @@
         </form>
 
         <a href="#">忘记密码</a><br>
-        <a href="all-admin-register.html" class="text-center">新用户注册</a>
+        <a href="${pageContext.request.contextPath}/pages/page/register.jsp" class="text-center">新用户注册</a>
     </div>
 
 </div>
@@ -60,11 +58,14 @@
 <script src="${pageContext.request.contextPath}/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function() {
+        //记住登录的控制函数
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+        // $('nopower').
+
     });
 </script>
 </body>

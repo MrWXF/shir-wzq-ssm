@@ -16,15 +16,31 @@ public class Admin {
     private String password;
 
     /**
+     * 邮箱
+     */
+    private String email;
+
+
+
+    /**
      * 角色等级(1，总管理员 2，员工管理员，3仓库管理员)
      */
     private Integer role;
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Admin() {
     }
 
-    public Admin(String name, String password, Integer role) {
+    public Admin(String name, String password, Integer role,String email) {
+        this.email = email;
         this.id = id;
         this.name = name;
         this.password = password;
@@ -99,12 +115,14 @@ public class Admin {
         this.role = role;
     }
 
+
     @Override
     public String toString() {
         return "Admin{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }

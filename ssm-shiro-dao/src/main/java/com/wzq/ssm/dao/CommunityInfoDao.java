@@ -40,4 +40,6 @@ public interface CommunityInfoDao {
      */
     @Select("select name, COUNT(*) from tb_admin GROUP BY #{name}")
     public Map<Object,Object> groupFind(String name);
+
+
 }

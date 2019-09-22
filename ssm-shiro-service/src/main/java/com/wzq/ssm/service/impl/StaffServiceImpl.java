@@ -45,7 +45,6 @@ public class StaffServiceImpl implements StaffService<Staff> {
 
     @Override
     public int addStaff(Staff staff) {
-
         int count = staffDao.addStaff(staff);
         return count;
     }

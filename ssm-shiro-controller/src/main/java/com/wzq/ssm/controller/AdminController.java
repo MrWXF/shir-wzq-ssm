@@ -2,6 +2,7 @@ package com.wzq.ssm.controller;
 
 import com.wzq.ssm.model.Admin;
 import com.wzq.ssm.service.AdminService;
+import com.wzq.ssm.service.shiro.IRoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -9,6 +10,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +23,7 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
 
     /**
      * 查询所有
@@ -44,10 +47,8 @@ public class AdminController {
      */
     @RequestMapping("/sava")
     public String sava(){
-        Admin admin1 = new Admin("wzq","222",2);
-        int saveconnt = adminService.sava(admin1);
-        System.out.println(saveconnt);
-        return "page/list-test";
+
+        return null;
     }
 
     /**
@@ -56,23 +57,18 @@ public class AdminController {
      */
     @RequestMapping("/delete")
     public String delete() {
-        int deletecont = adminService.delete(4);
-
-        System.out.println(deletecont);
-        return "delete";
+        return null;
     }
 
     @RequestMapping("/update")
     public String update(){
 
-        Admin admin = new Admin("吴金兰","123",1);
-        admin.setId(5);
-        adminService.update(admin);
-        return "update";
+        return null;
     }
 
     @RequestMapping(value = "/login")
     public String login(@RequestParam("name") String name, @RequestParam("password") String password,Model model){
+
         try {
             //1.获取Subject对象
 
@@ -91,20 +87,21 @@ public class AdminController {
             subject.login(token);
         }catch (AuthenticationException e){
             //验证失败 跳转失败页面
+            model.addAttribute("msg","用户名或密码错误！");
             return "redirect:/admin/no_power.do";
         }
         return "redirect:/admin/findAll.do";
     }
 
     /**
-     * 权限不够页面
+     * 验证错误页面
      */
     @RequestMapping("no_power")
-    public String noPower(){
+    public String noPower(@ModelAttribute("msg") String msg,Model model){
+        System.out.println(msg);
+        System.out.println("no_power");
+        model.addAttribute("msg",msg);
 
-        ModelAndView mv = new ModelAndView();
-        String no_power = "对不起！你没有权限访问！";
-        mv.addObject("nopower",no_power);
         return "/page/login";
     }
 
@@ -114,7 +111,55 @@ public class AdminController {
     @RequestMapping("/logout")
     public String logout(){
 
-        return null;
+        return "/page/login";
+    }
+
+    /**
+     * 刷新用户数据,然后重定向到登陆页面
+     */
+    @RequestMapping("/reAdmin")
+    public String reAdmin(){
+        adminService.findAll();
+        return "redirect:/admin/login.do";
+    }
+
+    /**
+     * 注册页面
+     * @return
+     */
+    @RequestMapping("/register")
+    public String register(Admin admin,Model model) {
+        ModelAndView mv = new ModelAndView();
+        String isEmpty = adminService.register(admin);
+        //存储用户是否存在的关键字
+        model.addAttribute("isEmpty",isEmpty);
+
+        //若用户不存在则跳转到添加页面
+        if ("ok".equals(isEmpty)){
+            return "redirect:/admin/add_user.do";
+//            mv.setViewName("forward:/admin/add_user.do");
+//            return mv;
+        }
+        //若存在，在提示用户用户名或邮箱已被注册
+        String noEmpty = "用户名或邮箱已被注册!";
+        model.addAttribute("noEmpty",noEmpty);
+
+//        mv.addObject("noEmpty",noEmpty);
+//        mv.setViewName("page/register");
+        return "/page/register";
+    }
+
+    /**
+     * 用户添加
+     */
+    @RequestMapping("add_user")
+    public String addUser(Admin admin,Model model){
+
+        int i = adminService.addUser(admin);
+        System.out.println(i);
+
+        //添加完成刷新用户数据
+        return "redirect:/reAdmin.do";
     }
 
 }

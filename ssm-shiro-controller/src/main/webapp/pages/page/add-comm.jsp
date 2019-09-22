@@ -30,7 +30,7 @@
         <section class="content">
 
             <!--订单信息-->
-            <form action="${pageContext.request.contextPath}/comm/addComm.do?page=1&size=4" method="get">
+            <form action="${pageContext.request.contextPath}/comm/addComm.do?page=1&size=4" method="post">
             <div class="panel panel-default">
 
                 <div class="row data-type">

@@ -110,7 +110,8 @@
 
                 /pages/page/list.jsp = anon
                 /pages/page/login.jsp = anon
-                /admin/login.do = anon
+                /pages/page/register.jsp = anon
+                /admin/* = anon
 
                 /pages/headel/** = anon
                 /admin/logout.do = logout

@@ -50,11 +50,12 @@ public class CommunityController {
      * @return
      */
     @RequestMapping("/addComm")
-    public String addComm(@RequestParam("page")  String page,
-                          @RequestParam("size")String size, CommunityInfo comm){
+    public String addComm(@RequestParam("page") Integer page,
+                          @RequestParam("size") Integer size, CommunityInfo comm){
 
         int sava = communityService.sava(comm);
         System.out.println(sava);
+        //
         return "redirect:/comm/selectCommAll.do?page="+page+"&size="+size;
     }
 
