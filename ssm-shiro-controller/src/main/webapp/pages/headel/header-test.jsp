@@ -39,7 +39,7 @@
 
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">修改密码</a>
+                                <a href="${pageContext.request.contextPath}/pages/page/repassword.jsp" class="btn btn-default btn-flat">修改密码</a>
                             </div>
                             <div class="pull-right">
                                 <a href="${pageContext.request.contextPath}/admin/logout.do" class="btn btn-default btn-flat">注销</a>

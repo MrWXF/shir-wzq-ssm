@@ -40,4 +40,9 @@ public interface AdminDao {
     //添加用户
     @Insert("insert into tb_admin(name,password,email) values (#{name},#{password},#{email})")
     int addUser(Admin admin);
+
+
+    //更新密码
+    @Update("update tb_admin set password=#{password} where user=#{user}")
+    int updatePassword(Admin admin);
 }

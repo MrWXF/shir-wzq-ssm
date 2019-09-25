@@ -110,8 +110,11 @@ public class AdminController {
      */
     @RequestMapping("/logout")
     public String logout(){
-
-        return "redirect:/page/login";
+        //获取Subject对象
+        Subject security = SecurityUtils.getSubject();
+        //执行logout注销
+        security.logout();
+        return "redirect:/pages/page/login.jsp";
     }
 
     /**
@@ -137,15 +140,11 @@ public class AdminController {
         //若用户不存在则跳转到添加页面
         if ("ok".equals(isEmpty)){
             return "redirect:/admin/add_user.do";
-//            mv.setViewName("forward:/admin/add_user.do");
-//            return mv;
+//
         }
         //若存在，在提示用户用户名或邮箱已被注册
         String noEmpty = "用户名或邮箱已被注册!";
         model.addAttribute("noEmpty",noEmpty);
-
-//        mv.addObject("noEmpty",noEmpty);
-//        mv.setViewName("page/register");
         return "/page/register";
     }
 
@@ -161,5 +160,20 @@ public class AdminController {
         //添加完成刷新用户数据
         return "redirect:/reAdmin.do";
     }
+
+
+    /**
+     * 修改密码
+     */
+
+    @RequestMapping("/upPassword")
+    public String upPassword(Admin admin,Model model){
+        //只有一个
+
+        System.out.println(admin.getName()+":"+admin.getPassword());
+//        adminService.sava(admin);
+        return "redirect:/reAdmin.do";
+    }
+
 
 }

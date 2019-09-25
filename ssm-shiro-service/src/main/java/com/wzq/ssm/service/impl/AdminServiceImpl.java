@@ -33,7 +33,19 @@ public class AdminServiceImpl implements AdminService<Admin> {
 
     @Override
     public int sava(Admin admin) {
-        int connt = adminDao.sava(admin);
+        //加密密码
+        String md5 = "MD5";
+        Object source = admin.getPassword();
+        Object salt = ByteSource.Util.bytes(admin.getName());
+        int hash = 1024;
+        Object hashedCreds  = new SimpleHash(md5,source,salt,hash);
+
+        //将对象类型密码转换为字符串
+        String password = String.valueOf(hashedCreds);
+
+        admin.setPassword(password);
+        //更新密码
+        int connt = adminDao.updatePassword(admin);
         return connt;
     }
 
