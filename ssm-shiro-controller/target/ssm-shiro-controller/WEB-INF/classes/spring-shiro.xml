@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-lazy-init="true">
+
+
+    <!--配置shiro begin-->
+    <!--1.配置securityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="cacheManager"></property>
+        <!--配置session的管理方式-->
+
+        <!--<property name="sessionManager" ref=""></property>-->
+
+        <!--配置authenticator-->
+        <property name="authenticator" ref="authenticator"></property>
+        <!--<property name="realm" ref="realm"></property>-->
+        <property name="realms">
+            <list>
+                <ref bean="jdbcRealm"/>
+                <ref bean="secondRealm"></ref>
+            </list>
+        </property>
+
+    </bean>
+
+
+    <!--配置多个realm-->
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <!--配置认证赤月-->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"></bean>
+        </property>
+    </bean>
+
+    <!--2.配置缓存管理器 cacheManager
+        配置
+    -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+    </bean>
+
+    <!--<bean id="sessionManager" class="org"></bean>-->
+
+    <!--3.配置realm
+        3.1自己配置了IShiroRealm实现类 实现了Realm接口
+    -->
+    <!--1)配置MD5加密 一般用于mysql-->
+    <bean name="jdbcRealm" class="com.wzq.ssm.shiro.IShiroRealm">
+        <!--配置一MD5的加密-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <property name="hashIterations" value="1024"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--1)配置SHA1加密 一般用于ORCEL-->
+    <bean name="secondRealm" class="com.wzq.ssm.shiro.SecondRealm">
+        <!--配置一MD5的加密-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="SHA1"></property>
+                <property name="hashIterations" value="1024"></property>
+            </bean>
+        </property>
+    </bean>
+
+
+    <!--4配置生命周期的bean处理器
+        可以自动的调用Spring IOC容器中的shiro bean的生命周期方法
+    -->
+    <bean name="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+
+    <!--5 启用IOC 容器中的shiro注解， 但必须配置了lifecycleBeanPostProcessor之后才可以使用-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+
+    <bean  class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"></property>
+    </bean>
+
+    <!--6 配置shiroFilter
+        id必须和web.xml的一致
+        若不一致之抛出bean不存在的错误
+    -->
+    <bean name="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!--登陆成功页面-->
+        <property name="loginUrl" value="/pages/page/login.jsp"/>
+        <!--登陆成功-->
+        <property name="successUrl" value="/pages/page/list.jsp"/>
+        <!--没有权限的页面-->
+        <property name="unauthorizedUrl" value="/admin/no_power.do"/>
+
+        <!--配置那些页面受保护
+        以及访问这些页面需要的权限
+        1）anon: 可以被匿名访问
+        2)authc: 必须被认证之后才被访问
+        3) logout； 登出
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                /css/** = anon
+                /img/** = anon
+                /plugins/** = anon
+
+                /pages/page/list.jsp = anon
+                /pages/page/login.jsp = anon
+                /pages/page/register.jsp = anon
+                /admin/* = anon
+
+                /pages/headel/** = anon
+                /admin/logout.do = logout
+                /** = authc
+            </value>
+        </property>
+    </bean>
+</beans>
