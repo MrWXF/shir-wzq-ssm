@@ -21,7 +21,7 @@
             <!--测试/日志-->
             <junit.version>4.12</junit.version>
             <slf4j.version>1.7.25</slf4j.version>
-            <log4j.version>2.11.2</log4j.version>
+            <log4j.version>2.16.0</log4j.version>
             <!--数据库-->
             <mysql.version>5.1.41</mysql.version>
             <mybatis.version>3.4.0</mybatis.version>
