@@ -32,7 +32,7 @@
             <!--Spring-->
             <spring.version>5.0.2.RELEASE</spring.version>
             <!--shrio-->
-            <shiro.version>1.2.1</shiro.version>
+            <shiro.version>1.9.1</shiro.version>
             <jcouchdb.version>1.0.1-1</jcouchdb.version>
             <!--文件上传-->
             <commons-fileupload.version>1.3.2</commons-fileupload.version>
