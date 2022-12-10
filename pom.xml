@@ -30,7 +30,7 @@
             <!--数据绑定-->
             <lombok.version>1.18.6</lombok.version>
             <!--Spring-->
-            <spring.version>5.0.2.RELEASE</spring.version>
+            <spring.version>6.0.0</spring.version>
             <!--shrio-->
             <shiro.version>1.2.1</shiro.version>
             <jcouchdb.version>1.0.1-1</jcouchdb.version>
